@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <title>Feliz aniversario</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Aniversario</title>
+    
+    <!-- Cargando la fuente Pacifico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: #fff;
-        font-family: "Pacifico", cursive;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-      }
+        body {
+            margin: 0;
+            background-color: black;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
 
-      h1 {
-        font-size: 3em;
-        color: black;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
-        margin-bottom: 40px;
-      }
+        h1 {
+            font-size: 3rem;
+            color: black;
+            text-shadow: 0 0 10px white;
+            margin-bottom: 50px;
+        }
 
-      .buttons {
-        display: flex;
-        gap: 40px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+        .button-container {
+            display: flex;
+            gap: 50px;
+        }
 
-      .image-button {
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-      }
+        .button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      .image-button img {
-        width: 140px;
-        height: auto;
-        display: block;
-        border: none;
-        outline: none;
-        box-shadow: none;
-      }
+        .button img {
+            width: 150px; /* Tamaño de la imagen */
+            height: auto;
+            border: none;
+            margin-bottom: 10px;
+        }
 
-      .image-button img:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
-      }
+        .button:hover img {
+            transform: scale(1.1); /* Efecto de ampliación en hover */
+            transition: 0.3s;
+        }
     </style>
-  </head>
+</head>
+<body>
+    <h1>Feliz Aniversario</h1>
 
-  <body>
-   
+    <div class="button-container">
+        <!-- Botón A -->
+        <div class="button">
+            <img src="/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
+            <button onclick="window.location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">Ir a Cartita Principal</button>
+        </div>
+
+        <!-- Botón B -->
+        <div class="button">
+            <img src="/universssso.png" alt="Botón B" />
+            <button onclick="window.location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">Ir al Universo</button>
+        </div>
+    </div>
+</body>
+</html>
