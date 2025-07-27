@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feliz Aniversario</title>
-    
+
     <!-- Cargando la fuente Pacifico -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             margin: 0;
@@ -43,6 +43,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1); /* Efecto de ampliación en hover */
         }
 
         .button img {
@@ -50,11 +55,33 @@
             height: auto;
             border: none;
             margin-bottom: 10px;
+            transition: transform 0.3s;
         }
 
-        .button:hover img {
+        .button img:hover {
             transform: scale(1.1); /* Efecto de ampliación en hover */
-            transition: 0.3s;
+        }
+
+        .button button {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: 2px solid #fff;
+            background-color: transparent;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .button button:hover {
+            transform: scale(1.05); /* Efecto de ampliación al hacer clic */
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .button button:active {
+            transform: scale(0.95); /* Efecto de compresión cuando se presiona el botón */
         }
     </style>
 </head>
@@ -65,7 +92,7 @@
         <!-- Botón A -->
         <div class="button">
             <img src="https://lyhuwu.github.io/Felyhh-aniversario-/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
-            <button onclick="window.location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">Ir a Cartita Principal</button>
+            <button onclick="window.location.href='https://lyhuwu.github.io/Feliz-aniversario/'">Ir a Cartita Principal</button>
         </div>
 
         <!-- Botón B -->
