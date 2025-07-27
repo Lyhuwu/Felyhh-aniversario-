@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>Feliz aniversario</title>
-    <!-- Fuente Pacifico desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,59 +32,33 @@
 
       .buttons {
         display: flex;
-        flex-direction: row;
         gap: 40px;
-        justify-content: center;
         flex-wrap: wrap;
+        justify-content: center;
       }
 
-      .btn-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .btn-container img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 12px;
-        margin-bottom: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      }
-
-      .btn {
-        padding: 10px 20px;
-        font-size: 1.2em;
-        background-color: #ffccdd;
+      .image-button {
+        background: none;
         border: none;
-        border-radius: 10px;
+        padding: 0;
         cursor: pointer;
-        transition: background 0.3s ease;
       }
 
-      .btn:hover {
-        background-color: #ffb3c6;
+      .image-button img {
+        width: 140px;
+        height: auto;
+        display: block;
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+
+      .image-button img:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease;
       }
     </style>
   </head>
 
   <body>
-    <h1>Feliz aniversario</h1>
-
-    <div class="buttons">
-      <div class="btn-container">
-        <img src="imagenA.jpg" alt="Imagen A" />
-        <a href="https://lyhuwu.github.io/Feliz-aniversario-/">
-          <button class="btn">Cartita principal</button>
-        </a>
-      </div>
-      <div class="btn-container">
-        <img src="imagenB.jpg" alt="Imagen B" />
-        <a href="https://lyhuwu.github.io/te-amo-en-todos-los-universos/">
-          <button class="btn">Universos</button>
-        </a>
-      </div>
-    </div>
-  </body>
-</html>
+   
