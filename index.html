@@ -1,74 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Feliz Aniversario</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #2b1055, #7597de);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 40px 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Feliz Aniversario</title>
 
-    h1 {
-      font-size: 3em;
-      margin-bottom: 50px;
-      background: linear-gradient(90deg, #ff00cc, #3333ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 3s linear infinite;
-    }
+    <!-- Fuente Cinzel Decorative -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
 
-    @keyframes shine {
-      0% { background-position: 0% }
-      100% { background-position: 100% }
-    }
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: 'Cinzel Decorative', cursive;
+      }
 
-    .botones {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
+      h1 {
+        font-size: 3.5em;
+        color: black;
+        text-shadow:
+          2px 2px 0 white,
+          -2px 2px 0 white,
+          2px -2px 0 white,
+          -2px -2px 0 white;
+        margin-bottom: 60px;
+      }
 
-    .boton {
-      background-color: #ffffff;
-      color: #2b1055;
-      border: none;
-      padding: 15px 25px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.2s, background-color 0.3s;
-    }
+      .boton {
+        padding: 14px 28px;
+        margin: 10px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
 
-    .boton:hover {
-      background-color: #f0f0f0;
-      transform: scale(1.05);
-    }
+      .boton:hover {
+        transform: scale(1.1);
+      }
 
-    .botonA {
-      background-color: #ff99cc;
-    }
+      .boton-a {
+        background-color: #ffd1dc;
+        color: #6b1e3f;
+      }
 
-    .botonB {
-      background-color: #99ccff;
-    }
-  </style>
-</head>
-<body>
+      .boton-b {
+        background-color: #d1e0ff;
+        color: #1e3f6b;
+      }
+    </style>
+  </head>
 
-  <h1>Feliz Aniversario</h1>
+  <body>
+    <h1>Feliz Aniversario</h1>
 
-  <div class="botones">
-    <a href="https://lyhuwu.github.io/Feliz-aniversario-/" class="boton botonA">Cartita principal 💌</a>
-    <a href="https://lyhuwu.github.io/te-amo-en-todos-los-universos/" class="boton botonB">Universo paralelo 🌌</a>
-  </div>
+    <button class="boton boton-a" onclick="location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">
+      Cartita principal 💌
+    </button>
 
-</body>
+    <button class="boton boton-b" onclick="location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">
+      Otro universo ✨
+    </button>
+  </body>
 </html>
