@@ -2,80 +2,81 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Feliz Aniversario</title>
-
-    <!-- Fuente Pacifico -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-
+    <title>Feliz aniversario</title>
+    <!-- Fuente Pacifico desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         margin: 0;
-        background-color: #fff;
+        padding: 0;
+        background: #fff;
         font-family: "Pacifico", cursive;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
+        height: 100vh;
       }
 
       h1 {
         font-size: 3em;
         color: black;
-        -webkit-text-stroke: 1px white; /* Borde blanco */
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
         margin-bottom: 40px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 30px;
+      }
+
+      .btn-container {
         text-align: center;
       }
 
-      .boton-con-imagen {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        margin: 10px;
-        border: none;
-        background: transparent;
-        cursor: pointer;
-      }
-
-      .boton-con-imagen img {
-        width: 150px;
-        height: 150px;
+      .btn-container img {
+        width: 100px;
+        height: 100px;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 12px;
         margin-bottom: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       }
 
-      .boton-con-imagen span {
+      .btn {
+        padding: 10px 20px;
         font-size: 1.2em;
-        color: black;
+        background-color: #ffccdd;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
       }
 
-      .contenedor-botones {
-        display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
-        justify-content: center;
+      .btn:hover {
+        background-color: #ffb3c6;
       }
     </style>
   </head>
 
   <body>
-    <h1>Feliz Aniversario</h1>
+    <h1>Feliz aniversario</h1>
 
-    <div class="contenedor-botones">
-      <a href="pagina-a.html" class="boton-con-imagen">
-        <img src="https://via.placeholder.com/150x150?text=A" alt="Imagen A">
-        <span>Botón A</span>
-      </a>
-
-      <a href="pagina-b.html" class="boton-con-imagen">
-        <img src="https://via.placeholder.com/150x150?text=B" alt="Imagen B">
-        <span>Botón B</span>
-      </a>
+    <div class="buttons">
+      <div class="btn-container">
+        <img src="imagenA.jpg" alt="Imagen A" />
+        <button class="btn">Opción A</button>
+      </div>
+      <div class="btn-container">
+        <img src="imagenB.jpg" alt="Imagen B" />
+        <button class="btn">Opción B</button>
+      </div>
     </div>
   </body>
 </html>
