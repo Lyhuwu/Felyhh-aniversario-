@@ -14,15 +14,11 @@
       }
     </style>
 
-    <!-- Three.js y OrbitControls -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/controls/OrbitControls.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/loaders/FontLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/geometries/TextGeometry.js"></script>
-  </head>
+    <!-- Cargar Three.js y otros módulos -->
+    <script type="module">
+      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js';
+      import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/controls/OrbitControls.js';
 
-  <body>
-    <script>
       const scene = new THREE.Scene();
 
       const camera = new THREE.PerspectiveCamera(
@@ -37,7 +33,8 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
 
-      const controls = new THREE.OrbitControls(camera, renderer.domElement);
+      // OrbitControls como módulo
+      const controls = new OrbitControls(camera, renderer.domElement);
 
       // Luces moradas y azules
       const light1 = new THREE.PointLight(0xaa00ff, 2, 100); // Incrementar la intensidad
@@ -79,7 +76,7 @@
 
       function animate() {
         requestAnimationFrame(animate);
-        controls.update();
+        controls.update(); // Actualiza los controles de la cámara
         renderer.render(scene, camera);
       }
       animate();
@@ -90,5 +87,8 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
     </script>
+  </head>
+
+  <body>
   </body>
 </html>
