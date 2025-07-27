@@ -1,94 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Feliz Aniversario</title>
-    <style>
-      body {
-        margin: 0;
-        background-color: black;
-        overflow: hidden;
-      }
-      canvas {
-        display: block;
-      }
-    </style>
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversario</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #2b1055, #7597de);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 40px 20px;
+    }
 
-    <!-- Cargar Three.js y otros módulos -->
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js';
-      import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/controls/OrbitControls.js'; // CORREGIDO: Cargar OrbitControls como módulo
+    h1 {
+      font-size: 3em;
+      margin-bottom: 50px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
 
-      const scene = new THREE.Scene();
+    @keyframes shine {
+      0% { background-position: 0% }
+      100% { background-position: 100% }
+    }
 
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
-      camera.position.z = 50; // Ajusta la posición para ver mejor el texto
+    .botones {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+    .boton {
+      background-color: #ffffff;
+      color: #2b1055;
+      border: none;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s, background-color 0.3s;
+    }
 
-      // OrbitControls como módulo
-      const controls = new OrbitControls(camera, renderer.domElement);
+    .boton:hover {
+      background-color: #f0f0f0;
+      transform: scale(1.05);
+    }
 
-      // Luces moradas y azules
-      const light1 = new THREE.PointLight(0xaa00ff, 2, 100); // Incrementar la intensidad
-      light1.position.set(30, 30, 30);
-      scene.add(light1);
+    .botonA {
+      background-color: #ff99cc;
+    }
 
-      const light2 = new THREE.PointLight(0x00ccff, 2, 100); // Incrementar la intensidad
-      light2.position.set(-30, -30, 30);
-      scene.add(light2);
+    .botonB {
+      background-color: #99ccff;
+    }
+  </style>
+</head>
+<body>
 
-      const ambientLight = new THREE.AmbientLight(0x404040, 1);
-      scene.add(ambientLight);
+  <h1>Feliz Aniversario</h1>
 
-      // Cargar fuente y crear texto
-      const loader = new THREE.FontLoader();
-      loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
-        const textGeometry = new THREE.TextGeometry("Feliz Aniversario", {
-          font: font,
-          size: 10, // Aumentar el tamaño del texto
-          height: 1.5,
-          curveSegments: 12,
-          bevelEnabled: true,
-          bevelThickness: 0.3,
-          bevelSize: 0.2,
-          bevelOffset: 0,
-          bevelSegments: 5
-        });
+  <div class="botones">
+    <a href="https://lyhuwu.github.io/Feliz-aniversario-/" class="boton botonA">Cartita principal 💌</a>
+    <a href="https://lyhuwu.github.io/te-amo-en-todos-los-universos/" class="boton botonB">Universo paralelo 🌌</a>
+  </div>
 
-        const textMaterial = new THREE.MeshStandardMaterial({
-          color: 0xffffff,
-          metalness: 0.6,
-          roughness: 0.2
-        });
-
-        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-        textGeometry.center(); // Centrar el texto
-        scene.add(textMesh);
-      });
-
-      function animate() {
-        requestAnimationFrame(animate);
-        controls.update(); // Actualiza los controles de la cámara
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    </script>
-  </head>
-
-  <body>
-  </body>
+</body>
 </html>
