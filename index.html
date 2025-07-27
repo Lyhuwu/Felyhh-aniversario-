@@ -4,75 +4,61 @@
     <meta charset="UTF-8" />
     <title>Feliz Aniversario</title>
 
-    <!-- Fuente Cinzel Decorative -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <!-- Fuente Pacifico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <style>
       body {
         margin: 0;
-        padding: 0;
-        background-color: white;
+        background-color: #fff;
+        font-family: "Pacifico", cursive;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        font-family: 'Cinzel Decorative', cursive;
+        min-height: 100vh;
       }
 
       h1 {
-        font-size: 3.5em;
+        font-size: 3em;
         color: black;
-        text-shadow:
-          2px 2px 0 white,
-          -2px 2px 0 white,
-          2px -2px 0 white,
-          -2px -2px 0 white;
+        -webkit-text-stroke: 1px white; /* Borde blanco */
         margin-bottom: 40px;
+        text-align: center;
       }
 
-      .boton-contenedor {
+      .boton-con-imagen {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 15px;
-      }
-
-      .boton-contenedor img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 15px;
-        margin-bottom: 10px;
-        border: 3px solid #eee;
-      }
-
-      .boton {
-        padding: 14px 28px;
-        font-size: 1.2em;
+        text-decoration: none;
+        margin: 10px;
         border: none;
-        border-radius: 12px;
+        background: transparent;
         cursor: pointer;
-        transition: transform 0.3s ease;
       }
 
-      .boton:hover {
-        transform: scale(1.1);
+      .boton-con-imagen img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
       }
 
-      .boton-a {
-        background-color: #ffd1dc;
-        color: #6b1e3f;
+      .boton-con-imagen span {
+        font-size: 1.2em;
+        color: black;
       }
 
-      .boton-b {
-        background-color: #d1e0ff;
-        color: #1e3f6b;
-      }
-
-      .botones {
+      .contenedor-botones {
         display: flex;
-        gap: 40px;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
     </style>
   </head>
@@ -80,20 +66,16 @@
   <body>
     <h1>Feliz Aniversario</h1>
 
-    <div class="botones">
-      <div class="boton-contenedor">
-        <img src="https://i.imgur.com/qhN5rhT.png" alt="Imagen A">
-        <button class="boton boton-a" onclick="location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">
-          Cartita principal 💌
-        </button>
-      </div>
+    <div class="contenedor-botones">
+      <a href="pagina-a.html" class="boton-con-imagen">
+        <img src="https://via.placeholder.com/150x150?text=A" alt="Imagen A">
+        <span>Botón A</span>
+      </a>
 
-      <div class="boton-contenedor">
-        <img src="https://i.imgur.com/3n3K3UJ.png" alt="Imagen B">
-        <button class="boton boton-b" onclick="location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">
-          Otro universo ✨
-        </button>
-      </div>
+      <a href="pagina-b.html" class="boton-con-imagen">
+        <img src="https://via.placeholder.com/150x150?text=B" alt="Imagen B">
+        <span>Botón B</span>
+      </a>
     </div>
   </body>
 </html>
