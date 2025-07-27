@@ -33,16 +33,21 @@
 
       .buttons {
         display: flex;
-        gap: 30px;
+        flex-direction: row;
+        gap: 40px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .btn-container {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .btn-container img {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
         object-fit: cover;
         border-radius: 12px;
         margin-bottom: 10px;
@@ -71,11 +76,15 @@
     <div class="buttons">
       <div class="btn-container">
         <img src="imagenA.jpg" alt="Imagen A" />
-        <button class="btn">Opción A</button>
+        <a href="https://lyhuwu.github.io/Feliz-aniversario-/">
+          <button class="btn">Cartita principal</button>
+        </a>
       </div>
       <div class="btn-container">
         <img src="imagenB.jpg" alt="Imagen B" />
-        <button class="btn">Opción B</button>
+        <a href="https://lyhuwu.github.io/te-amo-en-todos-los-universos/">
+          <button class="btn">Universos</button>
+        </a>
       </div>
     </div>
   </body>
