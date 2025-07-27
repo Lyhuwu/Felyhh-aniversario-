@@ -28,12 +28,27 @@
           -2px 2px 0 white,
           2px -2px 0 white,
           -2px -2px 0 white;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
+      }
+
+      .boton-contenedor {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px;
+      }
+
+      .boton-contenedor img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        border: 3px solid #eee;
       }
 
       .boton {
         padding: 14px 28px;
-        margin: 10px;
         font-size: 1.2em;
         border: none;
         border-radius: 12px;
@@ -54,18 +69,31 @@
         background-color: #d1e0ff;
         color: #1e3f6b;
       }
+
+      .botones {
+        display: flex;
+        gap: 40px;
+      }
     </style>
   </head>
 
   <body>
     <h1>Feliz Aniversario</h1>
 
-    <button class="boton boton-a" onclick="location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">
-      Cartita principal 💌
-    </button>
+    <div class="botones">
+      <div class="boton-contenedor">
+        <img src="https://i.imgur.com/qhN5rhT.png" alt="Imagen A">
+        <button class="boton boton-a" onclick="location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">
+          Cartita principal 💌
+        </button>
+      </div>
 
-    <button class="boton boton-b" onclick="location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">
-      Otro universo ✨
-    </button>
+      <div class="boton-contenedor">
+        <img src="https://i.imgur.com/3n3K3UJ.png" alt="Imagen B">
+        <button class="boton boton-b" onclick="location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">
+          Otro universo ✨
+        </button>
+      </div>
+    </div>
   </body>
 </html>
