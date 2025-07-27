@@ -1,64 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Mis Botoncitos</title>
-  <style>
-    body {
-      background-color: #0b0c2a;
-      color: white;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
-      padding: 60px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Feliz Aniversario</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: black;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 40px;
-    }
+    <!-- Three.js y OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/controls/OrbitControls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/loaders/FontLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.157.0/examples/js/geometries/TextGeometry.js"></script>
+  </head>
 
-    .boton-a, .boton-b {
-      display: inline-block;
-      padding: 15px 30px;
-      margin: 15px;
-      font-size: 18px;
-      border-radius: 25px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
+  <body>
+    <script>
+      const scene = new THREE.Scene();
 
-    /* Estilo único para Botón A */
-    .boton-a {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      color: #330033;
-    }
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      camera.position.z = 40;
 
-    .boton-a:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px #ffb6c1;
-    }
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
-    /* Estilo único para Botón B */
-    .boton-b {
-      background: linear-gradient(to right, #a18cd1, #fbc2eb);
-      color: #1b0033;
-    }
+      const controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-    .boton-b:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px #cda0ff;
-    }
-  </style>
-</head>
-<body>
+      // Luces moradas y azules
+      const light1 = new THREE.PointLight(0xaa00ff, 1.5, 100);
+      light1.position.set(30, 30, 30);
+      scene.add(light1);
 
-  <h1>🌟 Elige tu universo 🌌</h1>
+      const light2 = new THREE.PointLight(0x00ccff, 1.5, 100);
+      light2.position.set(-30, -30, 30);
+      scene.add(light2);
 
-  <a href="https://lyhuwu.github.io/Feliz-aniversario-/" target="_blank" class="boton-a">Cartita Principal</a>
-  <a href="https://lyhuwu.github.io/te-amo-en-todos-los-universos/" target="_blank" class="boton-b">Universo Alterno</a>
+      const ambientLight = new THREE.AmbientLight(0x404040, 1);
+      scene.add(ambientLight);
 
-</body>
+      // Cargar fuente y crear texto
+      const loader = new THREE.FontLoader();
+      loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+        const textGeometry = new THREE.TextGeometry("Feliz Aniversario", {
+          font: font,
+          size: 5,
+          height: 1.5,
+          curveSegments: 12,
+          bevelEnabled: true,
+          bevelThickness: 0.3,
+          bevelSize: 0.2,
+          bevelOffset: 0,
+          bevelSegments: 5
+        });
+
+        const textMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          metalness: 0.6,
+          roughness: 0.2
+        });
+
+        const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+        textGeometry.center(); // Centrar el texto
+        scene.add(textMesh);
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
 </html>
-
