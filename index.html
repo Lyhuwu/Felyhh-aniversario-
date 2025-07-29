@@ -47,11 +47,11 @@
         }
 
         .button:hover {
-            transform: scale(1.1); /* Efecto de ampliación en hover */
+            transform: scale(1.1);
         }
 
         .button img {
-            width: 150px; /* Tamaño de la imagen */
+            width: 150px;
             height: auto;
             border: none;
             margin-bottom: 10px;
@@ -59,7 +59,7 @@
         }
 
         .button img:hover {
-            transform: scale(1.1); /* Efecto de ampliación en hover */
+            transform: scale(1.1);
         }
 
         .button button {
@@ -76,12 +76,51 @@
         }
 
         .button button:hover {
-            transform: scale(1.05); /* Efecto de ampliación al hacer clic */
+            transform: scale(1.05);
             background-color: rgba(255, 255, 255, 0.1);
         }
 
         .button button:active {
-            transform: scale(0.95); /* Efecto de compresión cuando se presiona el botón */
+            transform: scale(0.95);
+        }
+
+        /* Estilos del reproductor de música */
+        .music-player {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #b3d9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2rem;
+            color: black;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(255,255,255,0.2);
+        }
+
+        .music-player button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: black;
+            transition: transform 0.2s;
+        }
+
+        .music-player button:hover {
+            transform: scale(1.2);
+        }
+
+        #songName {
+            font-size: 1rem;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     </style>
 </head>
@@ -101,5 +140,70 @@
             <button onclick="window.location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">Tu y yo siempre</button>
         </div>
     </div>
+
+    <!-- Reproductor de música -->
+    <div class="music-player">
+        <button onclick="prevSong()">⏮️</button>
+        <button onclick="togglePlayPause()" id="playPauseBtn">▶️</button>
+        <button onclick="nextSong()">⏭️</button>
+        <span id="songName"></span>
+        <audio id="audioPlayer" src=""></audio>
+    </div>
+
+    <script>
+        const songs = [
+            "canciones/1.mp3",
+            "canciones/2.mp3",
+            "canciones/3.mp3",
+            "canciones/4.mp3",
+            "canciones/5.mp3",
+            "canciones/6.mp3",
+            "canciones/7.mp3",
+            "canciones/8.mp3",
+            "canciones/9.mp3",
+            "canciones/10.mp3"
+        ];
+
+        let currentSong = 0;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const songNameDisplay = document.getElementById("songName");
+
+        function loadSong(index) {
+            audioPlayer.src = songs[index];
+            const songName = songs[index].split("/").pop();
+            songNameDisplay.textContent = songName;
+        }
+
+        function togglePlayPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseBtn.textContent = "⏸️";
+            } else {
+                audioPlayer.pause();
+                playPauseBtn.textContent = "▶️";
+            }
+        }
+
+        function nextSong() {
+            currentSong = (currentSong + 1) % songs.length;
+            loadSong(currentSong);
+            audioPlayer.play();
+            playPauseBtn.textContent = "⏸️";
+        }
+
+        function prevSong() {
+            currentSong = (currentSong - 1 + songs.length) % songs.length;
+            loadSong(currentSong);
+            audioPlayer.play();
+            playPauseBtn.textContent = "⏸️";
+        }
+
+        audioPlayer.addEventListener("ended", nextSong);
+
+        window.onload = () => {
+            loadSong(currentSong);
+        };
+    </script>
 </body>
 </html>
