@@ -84,7 +84,6 @@
             transform: scale(0.95);
         }
 
-        /* Estilos del reproductor de música */
         .music-player {
             position: fixed;
             bottom: 0;
@@ -152,16 +151,16 @@
 
     <script>
         const songs = [
-            "canciones/1.mp3",
-            "canciones/2.mp3",
-            "canciones/3.mp3",
-            "canciones/4.mp3",
-            "canciones/5.mp3",
-            "canciones/6.mp3",
-            "canciones/7.mp3",
-            "canciones/8.mp3",
-            "canciones/9.mp3",
-            "canciones/10.mp3"
+            { src: "canciones/1.mp3", name: "Nuestro primer baile" },
+            { src: "canciones/2.mp3", name: "Luz de luna" },
+            { src: "canciones/3.mp3", name: "Contigo todo" },
+            { src: "canciones/4.mp3", name: "Dulce despertar" },
+            { src: "canciones/5.mp3", name: "Universo a tu lado" },
+            { src: "canciones/6.mp3", name: "Notas para ti" },
+            { src: "canciones/7.mp3", name: "Sonrisas eternas" },
+            { src: "canciones/8.mp3", name: "Te pienso, te abrazo" },
+            { src: "canciones/9.mp3", name: "Siempre juntos" },
+            { src: "canciones/10.mp3", name: "Amor sin fin" }
         ];
 
         let currentSong = 0;
@@ -170,9 +169,8 @@
         const songNameDisplay = document.getElementById("songName");
 
         function loadSong(index) {
-            audioPlayer.src = songs[index];
-            const songName = songs[index].split("/").pop();
-            songNameDisplay.textContent = songName;
+            audioPlayer.src = songs[index].src;
+            songNameDisplay.textContent = songs[index].name;
         }
 
         function togglePlayPause() {
