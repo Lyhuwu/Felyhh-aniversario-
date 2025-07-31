@@ -1,227 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Feliz Aniversario</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Aniversario</title>
 
-  <!-- Fuente Pacifico y otra para el reproductor -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet"/>
+    <!-- Cargando la fuente Pacifico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      background-color: black;
-      font-family: 'Pacifico', cursive;
-      color: white;
-      padding-bottom: 140px;
-      text-align: center;
-    }
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            font-family: 'Pacifico', cursive;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
 
-    h1 {
-      font-size: 3rem;
-      color: black;
-      text-shadow: 0 0 10px white;
-      margin-top: 30px;
-    }
+        h1 {
+            font-size: 3rem;
+            color: black;
+            text-shadow: 0 0 10px white;
+            margin-bottom: 50px;
+        }
 
-    .note-card {
-      background-color: #89CFF0;
-      color: black;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 40px auto;
-      max-width: 90%;
-      position: relative;
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
-      font-family: 'Pacifico', cursive;
-      line-height: 1.4;
-    }
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Distribuye los botones */
+            width: 60%; /* Ajuste el ancho */
+            gap: 20px; /* Espaciado entre los botones */
+        }
 
-    .note-card .toggle-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+        .button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s;
+        }
 
-    .button-container {
-      display: flex;
-      justify-content: space-around; /* Alineación horizontal */
-      gap: 50px;
-      flex-wrap: wrap;
-      margin: 40px 0;
-    }
+        .button:hover {
+            transform: scale(1.1);
+        }
 
-    .button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+        .button img {
+            width: 150px;
+            height: auto;
+            border: none;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
 
-    .button img {
-      width: 140px;
-      margin-bottom: 10px;
-    }
+        .button img:hover {
+            transform: scale(1.1);
+        }
 
-    .button button {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.2rem;
-      padding: 10px 20px;
-      margin-top: 10px;
-      border: 2px solid #fff;
-      background: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-    }
+        .button button {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: 2px solid #fff;
+            background-color: transparent;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
 
-    .audio-controls {
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      background-color: #89CFF0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      gap: 10px;
-      z-index: 1000;
-      border-radius: 25px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+        .button button:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
 
-    .audio-controls button {
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      width: 50px;
-      height: 50px;
-      background-color: white;
-      color: black;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
+        .button button:active {
+            transform: scale(0.95);
+        }
 
-    .audio-controls button:hover {
-      transform: scale(1.2);
-    }
+        .music-player {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #89CFF0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.2rem;
+            color: black;
+            gap: 20px;
+            z-index: 1000;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -2px 10px rgba(255,255,255,0.2);
+        }
 
-    .audio-controls span {
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      color: black;
-      max-width: 200px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
+        .music-player button {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: black;
+            transition: transform 0.2s;
+        }
 
-    @media (max-width: 600px) {
-      .note-card {
-        max-width: 95%;
-        font-size: 1.1rem;
-        padding: 15px;
-      }
+        .music-player button:hover {
+            transform: scale(1.2);
+        }
 
-      .audio-controls {
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
-  </style>
+        #songName {
+            font-size: 1rem;
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .note-card {
+            background-color: #89CFF0;
+            color: black;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 90%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+            font-family: 'Pacifico', cursive;
+            line-height: 1.4;
+        }
+
+        .note-card .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .note-card {
+                max-width: 95%;
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Feliz Aniversario</h1>
+    <h1>Feliz Aniversario</h1>
 
-  <div class="button-container">
-    <div class="button">
-      <img src="https://lyhuwu.github.io/Felyhh-aniversario-/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
-      <button onclick="window.open('https://lyhuwu.github.io/Feliz-aniversario-/')">Una cartita con mucho amor</button>
+    <div class="button-container">
+        <!-- Botón A -->
+        <div class="button">
+            <img src="https://lyhuwu.github.io/Felyhh-aniversario-/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
+            <button onclick="window.location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">Una cartita con mucho amor</button>
+        </div>
+
+        <!-- Botón Instrucciones -->
+        <div class="button">
+            <!-- Imagen para el botón Instrucciones -->
+            <img src="https://img.icons8.com/ios/452/information.png" alt="Instrucciones" />
+            <button onclick="showInstructions()">Instrucciones</button>
+        </div>
+
+        <!-- Botón B -->
+        <div class="button">
+            <img src="https://lyhuwu.github.io/Felyhh-aniversario-/universssso.png" alt="Botón B" />
+            <button onclick="window.location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">Tu y yo siempre</button>
+        </div>
     </div>
-    <div class="button">
-      <img src="https://lyhuwu.github.io/Felyhh-aniversario-/universssso.png" alt="Botón B" />
-      <button onclick="window.open('https://lyhuwu.github.io/te-amo-en-todos-los-universos/')">Tú y yo siempre</button>
+
+    <!-- Reproductor de música -->
+    <div class="music-player">
+        <button onclick="prevSong()">⏮️</button>
+        <button onclick="togglePlayPause()" id="playPauseBtn">▶️</button>
+        <button onclick="nextSong()">⏭️</button>
+        <span id="songName"></span>
+        <audio id="audioPlayer" src=""></audio>
     </div>
-    <div class="button">
-      <img src="https://img.icons8.com/ios/452/information.png" alt="Instrucciones" />
-      <button onclick="showInstructions()">Instrucciones</button>
+
+    <!-- Notita de Instrucciones -->
+    <div class="note-card" id="noteCard" style="display: none;">
+        <button class="toggle-btn" onclick="toggleNote()">✖️</button>
+        <p>🌸 <strong>Instrucciones:</strong></p>
+        <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
+        <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
+        <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
+        <p>Dicho esto, ya peye ver, muaaa ❤️</p>
     </div>
-  </div>
 
-  <div class="note-card" id="noteCard" style="display: none;">
-    <button class="toggle-btn" onclick="toggleNote()">✖️</button>
-    <p>🌸 <strong>Instrucciones:</strong></p>
-    <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
-    <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
-    <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
-    <p>Dicho esto, ya peye ver, muaaa ❤️</p>
-  </div>
+    <script>
+        const songs = [
+            { src: "canciones/1.mp3", name: "Nuestro primer baile" },
+            { src: "canciones/2.mp3", name: "Luz de luna" },
+            { src: "canciones/3.mp3", name: "Contigo todo" },
+            { src: "canciones/4.mp3", name: "Dulce despertar" },
+            { src: "canciones/5.mp3", name: "Universo a tu lado" },
+            { src: "canciones/6.mp3", name: "Notas para ti" },
+            { src: "canciones/7.mp3", name: "Sonrisas eternas" },
+            { src: "canciones/8.mp3", name: "Te pienso, te abrazo" },
+            { src: "canciones/9.mp3", name: "Siempre juntos" },
+            { src: "canciones/10.mp3", name: "Amor sin fin" }
+        ];
 
-  <div class="audio-controls">
-    <button onclick="togglePlayPause()">▶️</button>
-    <button onclick="playRandom()">🔄</button>
-    <span id="songTitle"></span>
-    <audio id="player"></audio>
-  </div>
+        let currentSong = 0;
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const songNameDisplay = document.getElementById("songName");
 
-  <script>
-    const canciones = [
-      { archivo: "canciones/1.mp3", nombre: "Nuestro primer baile" },
-      { archivo: "canciones/2.mp3", nombre: "Luz de luna" },
-      { archivo: "canciones/3.mp3", nombre: "Contigo todo" },
-      { archivo: "canciones/4.mp3", nombre: "Dulce despertar" },
-      { archivo: "canciones/5.mp3", nombre: "Universo a tu lado" },
-      { archivo: "canciones/6.mp3", nombre: "Notas para ti" },
-      { archivo: "canciones/7.mp3", nombre: "Sonrisas eternas" },
-      { archivo: "canciones/8.mp3", nombre: "Te pienso, te abrazo" },
-      { archivo: "canciones/9.mp3", nombre: "Siempre juntos" },
-      { archivo: "canciones/10.mp3", nombre: "Amor sin fin" }
-    ];
+        function loadSong(index) {
+            audioPlayer.src = songs[index].src;
+            songNameDisplay.textContent = songs[index].name;
+        }
 
-    const player = document.getElementById('player');
-    const songTitle = document.getElementById('songTitle');
-    let currentIndex = Math.floor(Math.random() * canciones.length);
-    player.volume = 0.7;
+        function togglePlayPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playPauseBtn.textContent = "⏸️";
+            } else {
+                audioPlayer.pause();
+                playPauseBtn.textContent = "▶️";
+            }
+        }
 
-    function loadSong(idx) {
-      currentIndex = idx;
-      player.src = canciones[idx].archivo;
-      songTitle.textContent = canciones[idx].nombre;
-      player.play();
-    }
+        function nextSong() {
+            currentSong = (currentSong + 1) % songs.length;
+            loadSong(currentSong);
+            audioPlayer.play();
+            playPauseBtn.textContent = "⏸️";
+        }
 
-    function playRandom() {
-      let idx;
-      do { idx = Math.floor(Math.random() * canciones.length); } while (idx === currentIndex);
-      loadSong(idx);
-    }
+        function prevSong() {
+            currentSong = (currentSong - 1 + songs.length) % songs.length;
+            loadSong(currentSong);
+            audioPlayer.play();
+            playPauseBtn.textContent = "⏸️";
+        }
 
-    function togglePlayPause() {
-      if (!player.src) loadSong(currentIndex);
-      else player.paused ? player.play() : player.pause();
-    }
+        function toggleNote() {
+            document.getElementById('noteCard').style.display = 'none';
+        }
 
-    function toggleNote() {
-      document.getElementById('noteCard').style.display = 'none';
-    }
+        function showInstructions() {
+            document.getElementById('noteCard').style.display = 'block';
+        }
 
-    function showInstructions() {
-      document.getElementById('noteCard').style.display = 'block';
-    }
+        audioPlayer.addEventListener("ended", nextSong);
 
-    window.onload = () => loadSong(currentIndex);
-  </script>
+        window.onload = () => {
+            loadSong(currentSong);
+        };
+    </script>
 </body>
 </html>
