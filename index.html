@@ -22,6 +22,7 @@
             height: 100vh;
             flex-direction: column;
             text-align: center;
+            overflow-x: hidden; /* Evita scroll horizontal */
         }
 
         h1 {
@@ -33,9 +34,9 @@
 
         .button-container {
             display: flex;
-            justify-content: space-between; /* Distribuye los botones */
-            width: 60%; /* Ajuste el ancho */
-            gap: 20px; /* Espaciado entre los botones */
+            justify-content: space-between;
+            width: 80%;
+            gap: 20px;
         }
 
         .button {
@@ -125,34 +126,63 @@
             text-overflow: ellipsis;
         }
 
-        .note-card {
-            background-color: #89CFF0;
-            color: black;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 40px auto;
-            max-width: 90%;
-            position: relative;
-            box-shadow: 0 0 15px rgba(255,255,255,0.2);
-            font-family: 'Pacifico', cursive;
-            line-height: 1.4;
+        /* Estilo de la ventana emergente (modal) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
         }
 
-        .note-card .toggle-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        .modal-content {
+            background-color: #89CFF0;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            font-family: 'Pacifico', cursive;
+            line-height: 1.4;
+            max-width: 90%;
+            text-align: left;
+        }
+
+        .modal .close-btn {
             background: none;
             border: none;
             font-size: 1.5rem;
+            color: black;
+            position: absolute;
+            top: 10px;
+            right: 10px;
             cursor: pointer;
         }
 
+        /* Ajustes para móviles */
         @media (max-width: 600px) {
-            .note-card {
-                max-width: 95%;
+            body {
+                height: 100%;
+                overflow-y: auto;
+                text-align: center;
+            }
+
+            .button-container {
+                width: 100%;
+                gap: 10px;
+            }
+
+            .button img {
+                width: 120px;
+            }
+
+            .modal-content {
                 font-size: 1.1rem;
-                padding: 15px;
+                padding: 20px;
             }
         }
     </style>
@@ -190,14 +220,16 @@
         <audio id="audioPlayer" src=""></audio>
     </div>
 
-    <!-- Notita de Instrucciones -->
-    <div class="note-card" id="noteCard" style="display: none;">
-        <button class="toggle-btn" onclick="toggleNote()">✖️</button>
-        <p>🌸 <strong>Instrucciones:</strong></p>
-        <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
-        <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
-        <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
-        <p>Dicho esto, ya peye ver, muaaa ❤️</p>
+    <!-- Ventana emergente de Instrucciones -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeInstructions()">✖️</button>
+            <p>🌸 <strong>Instrucciones:</strong></p>
+            <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
+            <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
+            <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
+            <p>Dicho esto, ya peye ver, muaaa ❤️</p>
+        </div>
     </div>
 
     <script>
@@ -248,12 +280,12 @@
             playPauseBtn.textContent = "⏸️";
         }
 
-        function toggleNote() {
-            document.getElementById('noteCard').style.display = 'none';
+        function showInstructions() {
+            document.getElementById('myModal').style.display = 'flex';
         }
 
-        function showInstructions() {
-            document.getElementById('noteCard').style.display = 'block';
+        function closeInstructions() {
+            document.getElementById('myModal').style.display = 'none';
         }
 
         audioPlayer.addEventListener("ended", nextSong);
