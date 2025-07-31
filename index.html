@@ -315,23 +315,24 @@
 
     window.onload = () => {
       loadSong(currentSong);
-      // Corazones flotantes
-      let duration = 10000; // 10 segundos
-      let interval = 300;
 
-      const colors = ['#5B2C6F', '#154360']; // Morado y azul fuerte
+      // Corazones flotantes 💜💙
+      let duration = 13000; // 13 segundos
+      let interval = 250;
+      const emojis = ['💜', '💙'];
 
       const spawnHeart = () => {
         const heart = document.createElement('div');
         heart.className = 'heart';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-        heart.textContent = '💜';
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.textContent = emoji;
+        heart.style.color = emoji === '💜' ? '#8e44ad' : '#154360';
         document.body.appendChild(heart);
 
         setTimeout(() => {
           heart.remove();
-        }, 10000);
+        }, duration);
       };
 
       const heartInterval = setInterval(spawnHeart, interval);
