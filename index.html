@@ -1,14 +1,14 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Aniversario</title>
 
   <!-- Fuente Pacifico -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
 
   <style>
     body {
@@ -17,25 +17,36 @@
       font-family: 'Pacifico', cursive;
       color: white;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       flex-direction: column;
+      align-items: center;
       text-align: center;
+      padding-bottom: 120px;
     }
-
     h1 {
       font-size: 3rem;
       color: black;
       text-shadow: 0 0 10px white;
-      margin-bottom: 50px;
+      margin: 30px 0;
     }
-
+    .note-card {
+      background-color: #89CFF0;
+      color: black;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 40px auto;
+      max-width: 90%;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+    }
+    .note-card p {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
     .button-container {
       display: flex;
       gap: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-
     .button {
       background-color: transparent;
       border: none;
@@ -45,23 +56,14 @@
       align-items: center;
       transition: transform 0.3s;
     }
-
     .button:hover {
       transform: scale(1.1);
     }
-
     .button img {
       width: 150px;
       height: auto;
-      border: none;
       margin-bottom: 10px;
-      transition: transform 0.3s;
     }
-
-    .button img:hover {
-      transform: scale(1.1);
-    }
-
     .button button {
       font-family: 'Pacifico', cursive;
       font-size: 1.2rem;
@@ -72,217 +74,121 @@
       color: white;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      transition: transform 0.2s, background-color 0.2s;
     }
-
     .button button:hover {
       transform: scale(1.05);
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255,255,255,0.1);
     }
-
-    .button button:active {
-      transform: scale(0.95);
+    audio::-webkit-media-controls-panel {
+      background: transparent;
     }
-
-    .music-player {
+    .audio-controls {
       position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #c2e9fb, #a1c4fd);
-      border-radius: 25px;
-      padding: 15px 30px;
+      bottom: 0;
+      width: 100%;
+      background-color: #89CFF0;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      padding: 15px;
+      gap: 10px;
+      flex-wrap: wrap;
+      z-index: 1000;
+    }
+    .audio-controls button {
+      font-family: 'Pacifico', cursive;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .audio-controls button:hover {
+      background-color: #dff0ff;
+    }
+    .audio-controls span {
       font-family: 'Pacifico', cursive;
       font-size: 1rem;
       color: black;
-      z-index: 1000;
-      border: 2px solid white;
-    }
-
-    .music-player button {
-      background-color: white;
-      color: #3366cc;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.3s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-
-    .music-player button:hover {
-      background-color: #e0f0ff;
-      transform: scale(1.1);
-    }
-
-    #songName {
-      max-width: 180px;
+      max-width: 200px;
       overflow: hidden;
-      text-overflow: ellipsis;
       white-space: nowrap;
-    }
-
-    #visualizer {
-      width: 100%;
-      height: 60px;
-      position: fixed;
-      bottom: 90px;
-      left: 0;
-      z-index: 999;
-    }
-
-    .shuffle-on {
-      background-color: #ffe0f7 !important;
-      color: #cc33aa !important;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
+
 <body>
   <h1>Feliz Aniversario</h1>
+
+  <div class="note-card">
+    <p>🌸 <strong>Instrucciones:</strong></p>
+    <p>1. Puedes (o no) darle al botón de play en la barra de abajo, al hacerlo, sonarán algunas canciones que me hacen pensar en ti.</p>
+    <p>2. Los botones te redirigen a otra pestaña; dale pausa a la música antes de hacer clic. Primero la cartita y luego lo que sigue.</p>
+    <p>PD: Todo está hecho con mucho amor y siguiendo tutoriales, espero que haya quedado muy lindo :((</p>
+    <p>Dicho esto, ya peye ver, muaaa ❤️</p>
+  </div>
 
   <div class="button-container">
     <div class="button">
       <img src="https://lyhuwu.github.io/Felyhh-aniversario-/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
-      <button onclick="window.location.href='https://lyhuwu.github.io/Feliz-aniversario-/'">Una cartita con mucho amor</button>
+      <button onclick="window.open('https://lyhuwu.github.io/Feliz-aniversario-/')">Una cartita con mucho amor</button>
     </div>
-
     <div class="button">
       <img src="https://lyhuwu.github.io/Felyhh-aniversario-/universssso.png" alt="Botón B" />
-      <button onclick="window.location.href='https://lyhuwu.github.io/te-amo-en-todos-los-universos/'">Tú y yo siempre</button>
+      <button onclick="window.open('https://lyhuwu.github.io/te-amo-en-todos-los-universos/')">Tú y yo siempre</button>
     </div>
   </div>
 
-  <canvas id="visualizer"></canvas>
-
-  <div class="music-player">
-    <button onclick="prevSong()">⏮️</button>
-    <button onclick="togglePlayPause()" id="playPauseBtn">▶️</button>
-    <button onclick="nextSong()">⏭️</button>
-    <button onclick="toggleShuffle()" id="shuffleBtn">🔀</button>
-    <span id="songName"></span>
-    <audio id="audioPlayer" crossorigin="anonymous"></audio>
+  <div class="audio-controls">
+    <button onclick="togglePlayPause()">⏯ Play/Pausa</button>
+    <button onclick="playRandom()">🔀 Aleatorio</button>
+    <span id="songTitle"></span>
+    <audio id="player"></audio>
   </div>
 
   <script>
-    const songs = [
-      { src: "canciones/1.mp3", name: "Nuestro primer baile" },
-      { src: "canciones/2.mp3", name: "Luz de luna" },
-      { src: "canciones/3.mp3", name: "Contigo todo" },
-      { src: "canciones/4.mp3", name: "Dulce despertar" },
-      { src: "canciones/5.mp3", name: "Universo a tu lado" },
-      { src: "canciones/6.mp3", name: "Notas para ti" },
-      { src: "canciones/7.mp3", name: "Sonrisas eternas" },
-      { src: "canciones/8.mp3", name: "Te pienso, te abrazo" },
-      { src: "canciones/9.mp3", name: "Siempre juntos" },
-      { src: "canciones/10.mp3", name: "Amor sin fin" }
+    const canciones = [
+      { archivo: "canciones/1.mp3", nombre: "Nuestro primer baile" },
+      { archivo: "canciones/2.mp3", nombre: "Luz de luna" },
+      { archivo: "canciones/3.mp3", nombre: "Contigo todo" },
+      { archivo: "canciones/4.mp3", nombre: "Dulce despertar" },
+      { archivo: "canciones/5.mp3", nombre: "Universo a tu lado" },
+      { archivo: "canciones/6.mp3", nombre: "Notas para ti" },
+      { archivo: "canciones/7.mp3", nombre: "Sonrisas eternas" },
+      { archivo: "canciones/8.mp3", nombre: "Te pienso, te abrazo" },
+      { archivo: "canciones/9.mp3", nombre: "Siempre juntos" },
+      { archivo: "canciones/10.mp3", nombre: "Amor sin fin" }
     ];
 
-    let currentSong = Math.floor(Math.random() * songs.length);
-    const audioPlayer = document.getElementById("audioPlayer");
-    const playPauseBtn = document.getElementById("playPauseBtn");
-    const songNameDisplay = document.getElementById("songName");
-    const shuffleBtn = document.getElementById("shuffleBtn");
-    let isShuffle = false;
-    audioPlayer.volume = 0.7;
+    const player = document.getElementById('player');
+    const songTitle = document.getElementById('songTitle');
+    player.volume = 0.7;
 
     function loadSong(index) {
-      audioPlayer.src = songs[index].src;
-      songNameDisplay.textContent = songs[index].name;
-      playPauseBtn.textContent = "▶️";
+      player.src = canciones[index].archivo;
+      songTitle.textContent = canciones[index].nombre;
+      player.play();
+    }
+
+    function playRandom() {
+      const idx = Math.floor(Math.random() * canciones.length);
+      loadSong(idx);
     }
 
     function togglePlayPause() {
-      if (audioPlayer.src === "") loadSong(currentSong);
-      if (audioPlayer.paused || audioPlayer.ended) {
-        audioPlayer.play();
-        playPauseBtn.textContent = "⏸️";
+      if (!player.src) {
+        playRandom();
       } else {
-        audioPlayer.pause();
-        playPauseBtn.textContent = "▶️";
+        player.paused ? player.play() : player.pause();
       }
     }
 
-    function nextSong() {
-      if (isShuffle) {
-        let next;
-        do {
-          next = Math.floor(Math.random() * songs.length);
-        } while (next === currentSong);
-        currentSong = next;
-      } else {
-        currentSong = (currentSong + 1) % songs.length;
-      }
-      loadSong(currentSong);
-      audioPlayer.play();
-      playPauseBtn.textContent = "⏸️";
-    }
-
-    function prevSong() {
-      if (isShuffle) {
-        let prev;
-        do {
-          prev = Math.floor(Math.random() * songs.length);
-        } while (prev === currentSong);
-        currentSong = prev;
-      } else {
-        currentSong = (currentSong - 1 + songs.length) % songs.length;
-      }
-      loadSong(currentSong);
-      audioPlayer.play();
-      playPauseBtn.textContent = "⏸️";
-    }
-
-    function toggleShuffle() {
-      isShuffle = !isShuffle;
-      shuffleBtn.classList.toggle("shuffle-on", isShuffle);
-    }
-
-    audioPlayer.addEventListener("ended", nextSong);
-    window.onload = () => loadSong(currentSong);
-
-    // 🎧 Visualizador
-    const canvas = document.getElementById("visualizer");
-    const ctx = canvas.getContext("2d");
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const analyser = audioCtx.createAnalyser();
-    const source = audioCtx.createMediaElementSource(audioPlayer);
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-    analyser.fftSize = 64;
-
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = 60;
-    }
-
-    function draw() {
-      requestAnimationFrame(draw);
-      analyser.getByteFrequencyData(dataArray);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const barWidth = canvas.width / bufferLength;
-      for (let i = 0; i < bufferLength; i++) {
-        const barHeight = dataArray[i] / 2;
-        ctx.fillStyle = `rgba(255,255,255,0.6)`;
-        ctx.fillRect(i * barWidth, canvas.height - barHeight, barWidth - 2, barHeight);
-      }
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    audioPlayer.onplay = () => {
-      audioCtx.resume();
-      draw();
-    };
+    window.onload = () => playRandom();
   </script>
 </body>
 </html>
