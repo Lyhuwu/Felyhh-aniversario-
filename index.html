@@ -19,12 +19,14 @@
       padding-bottom: 140px;
       text-align: center;
     }
+
     h1 {
       font-size: 3rem;
       color: black;
       text-shadow: 0 0 10px white;
       margin-top: 30px;
     }
+
     .note-card {
       background-color: #89CFF0;
       color: black;
@@ -37,6 +39,7 @@
       font-family: 'Pacifico', cursive;
       line-height: 1.4;
     }
+
     .note-card .toggle-btn {
       position: absolute;
       top: 10px;
@@ -46,13 +49,18 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
+
     .button-container {
       display: flex;
       gap: 50px;
       flex-wrap: wrap;
       justify-content: center;
     }
-    .button img { width: 140px; }
+
+    .button img {
+      width: 140px;
+    }
+
     .button button {
       font-family: 'Pacifico', cursive;
       font-size: 1.2rem;
@@ -64,6 +72,7 @@
       color: white;
       cursor: pointer;
     }
+
     .audio-controls {
       position: fixed;
       bottom: 0;
@@ -72,15 +81,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 15px;
+      padding: 10px 20px;
       gap: 10px;
       z-index: 1000;
+      border-radius: 20px;
     }
+
     .audio-controls button {
       font-family: 'Roboto', sans-serif;
       font-size: 14px;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       background-color: white;
       color: black;
       border: none;
@@ -88,9 +99,11 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
+
     .audio-controls button:hover {
       transform: scale(1.2);
     }
+
     .audio-controls span {
       font-family: 'Roboto', sans-serif;
       font-size: 14px;
@@ -100,6 +113,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
     @media (max-width: 600px) {
       .note-card {
         max-width: 95%;
@@ -112,15 +126,6 @@
 <body>
   <h1>Feliz Aniversario</h1>
 
-  <div class="note-card" id="noteCard">
-    <button class="toggle-btn" onclick="toggleNote()">✖️</button>
-    <p>🌸 <strong>Instrucciones:</strong></p>
-    <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
-    <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
-    <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
-    <p>Dicho esto, ya peye ver, muaaa ❤️</p>
-  </div>
-
   <div class="button-container">
     <div class="button">
       <img src="https://lyhuwu.github.io/Felyhh-aniversario-/love-letter-envelope-free-vector-removebg-preview.png" alt="Botón A" />
@@ -130,6 +135,18 @@
       <img src="https://lyhuwu.github.io/Felyhh-aniversario-/universssso.png" alt="Botón B" />
       <button onclick="window.open('https://lyhuwu.github.io/te-amo-en-todos-los-universos/')">Tú y yo siempre</button>
     </div>
+    <div class="button">
+      <button onclick="showInstructions()">Instrucciones</button>
+    </div>
+  </div>
+
+  <div class="note-card" id="noteCard" style="display: none;">
+    <button class="toggle-btn" onclick="toggleNote()">✖️</button>
+    <p>🌸 <strong>Instrucciones:</strong></p>
+    <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
+    <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
+    <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
+    <p>Dicho esto, ya peye ver, muaaa ❤️</p>
   </div>
 
   <div class="audio-controls">
@@ -152,6 +169,7 @@
       { archivo: "canciones/9.mp3", nombre: "Siempre juntos" },
       { archivo: "canciones/10.mp3", nombre: "Amor sin fin" }
     ];
+
     const player = document.getElementById('player');
     const songTitle = document.getElementById('songTitle');
     let currentIndex = Math.floor(Math.random() * canciones.length);
@@ -163,18 +181,26 @@
       songTitle.textContent = canciones[idx].nombre;
       player.play();
     }
+
     function playRandom() {
       let idx;
-      do { idx = Math.floor(Math.random()*canciones.length); } while (idx === currentIndex);
+      do { idx = Math.floor(Math.random() * canciones.length); } while (idx === currentIndex);
       loadSong(idx);
     }
+
     function togglePlayPause() {
       if (!player.src) loadSong(currentIndex);
       else player.paused ? player.play() : player.pause();
     }
+
     function toggleNote() {
       document.getElementById('noteCard').style.display = 'none';
     }
+
+    function showInstructions() {
+      document.getElementById('noteCard').style.display = 'block';
+    }
+
     window.onload = () => loadSong(currentIndex);
   </script>
 </body>
