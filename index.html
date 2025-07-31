@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Feliz Aniversario</title>
 
-    <!-- Cargando la fuente Pacifico -->
+    <!-- Cargando las fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -96,7 +96,7 @@
             justify-content: center;
             align-items: center;
             padding: 10px 20px;
-            font-family: 'Pacifico', cursive;
+            font-family: 'Winky Rough', cursive; /* Usando la fuente Winky Rough solo para el reproductor */
             font-size: 1.2rem;
             color: black;
             gap: 20px;
@@ -150,17 +150,26 @@
             line-height: 1.4;
             max-width: 90%;
             text-align: left;
+            position: relative;
         }
 
-        .modal .close-btn {
+        .modal .close-btn,
+        .modal .minimize-btn {
             background: none;
             border: none;
             font-size: 1.5rem;
             color: black;
             position: absolute;
             top: 10px;
-            right: 10px;
             cursor: pointer;
+        }
+
+        .modal .close-btn {
+            right: 10px;
+        }
+
+        .modal .minimize-btn {
+            right: 40px;
         }
 
         /* Ajustes para móviles */
@@ -223,11 +232,13 @@
     <!-- Ventana emergente de Instrucciones -->
     <div id="myModal" class="modal">
         <div class="modal-content">
+            <!-- Botones de minimizar y cerrar -->
             <button class="close-btn" onclick="closeInstructions()">✖️</button>
+            <button class="minimize-btn" onclick="minimizeInstructions()">➖</button>
             <p>🌸 <strong>Instrucciones:</strong></p>
-            <p>1. Puede (o no) darle al boton de play en la barra de abajo, al hacerlo, sonaran algunas canciones que me hacen pensar en ti.</p>
-            <p>2. Los otros botones te redirigen a otra pestaña, para ello dele pausa a la musica antes de darle al botoncito hehehe, ademas, el orden para ver es primero la cartita y despues lo que sigue.</p>
-            <p>PD: Todo fue hecho con mucho amor y siguiendo tutoriales hehehehe, espero que te guste 💞</p>
+            <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
+            <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
+            <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
             <p>Dicho esto, ya peye ver, muaaa ❤️</p>
         </div>
     </div>
@@ -285,6 +296,10 @@
         }
 
         function closeInstructions() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function minimizeInstructions() {
             document.getElementById('myModal').style.display = 'none';
         }
 
