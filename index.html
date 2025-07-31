@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Aniversario</title>
 
-  <!-- Fuente Pacifico -->
+  <!-- Fuente Pacifico y otra para el reproductor -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet"/>
 
   <style>
     body {
@@ -16,17 +16,14 @@
       background-color: black;
       font-family: 'Pacifico', cursive;
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding-bottom: 140px;
       text-align: center;
-      padding-bottom: 120px;
     }
     h1 {
       font-size: 3rem;
       color: black;
       text-shadow: 0 0 10px white;
-      margin: 30px 0;
+      margin-top: 30px;
     }
     .note-card {
       background-color: #89CFF0;
@@ -35,11 +32,19 @@
       border-radius: 15px;
       margin: 40px auto;
       max-width: 90%;
+      position: relative;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      font-family: 'Pacifico', cursive;
+      line-height: 1.4;
     }
-    .note-card p {
-      font-size: 1.2rem;
-      margin: 0.5rem 0;
+    .note-card .toggle-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     .button-container {
       display: flex;
@@ -47,41 +52,17 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    .button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s;
-    }
-    .button:hover {
-      transform: scale(1.1);
-    }
-    .button img {
-      width: 150px;
-      height: auto;
-      margin-bottom: 10px;
-    }
+    .button img { width: 140px; }
     .button button {
       font-family: 'Pacifico', cursive;
       font-size: 1.2rem;
       padding: 10px 20px;
       margin-top: 10px;
       border: 2px solid #fff;
-      background-color: transparent;
-      color: white;
+      background: none;
       border-radius: 8px;
+      color: white;
       cursor: pointer;
-      transition: transform 0.2s, background-color 0.2s;
-    }
-    .button button:hover {
-      transform: scale(1.05);
-      background-color: rgba(255,255,255,0.1);
-    }
-    audio::-webkit-media-controls-panel {
-      background: transparent;
     }
     .audio-controls {
       position: fixed;
@@ -93,43 +74,50 @@
       align-items: center;
       padding: 15px;
       gap: 10px;
-      flex-wrap: wrap;
       z-index: 1000;
     }
     .audio-controls button {
-      font-family: 'Pacifico', cursive;
-      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      width: 36px;
+      height: 36px;
       background-color: white;
       color: black;
       border: none;
-      padding: 10px 15px;
-      border-radius: 10px;
+      border-radius: 50%;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: transform 0.2s;
     }
     .audio-controls button:hover {
-      background-color: #dff0ff;
+      transform: scale(1.2);
     }
     .audio-controls span {
-      font-family: 'Pacifico', cursive;
-      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
       color: black;
-      max-width: 200px;
+      max-width: 150px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+    @media (max-width: 600px) {
+      .note-card {
+        max-width: 95%;
+        font-size: 1.1rem;
+        padding: 15px;
+      }
+    }
   </style>
 </head>
-
 <body>
   <h1>Feliz Aniversario</h1>
 
-  <div class="note-card">
+  <div class="note-card" id="noteCard">
+    <button class="toggle-btn" onclick="toggleNote()">✖️</button>
     <p>🌸 <strong>Instrucciones:</strong></p>
-    <p>1. Puedes (o no) darle al botón de play en la barra de abajo, al hacerlo, sonarán algunas canciones que me hacen pensar en ti.</p>
-    <p>2. Los botones te redirigen a otra pestaña; dale pausa a la música antes de hacer clic. Primero la cartita y luego lo que sigue.</p>
-    <p>PD: Todo está hecho con mucho amor y siguiendo tutoriales, espero que haya quedado muy lindo :((</p>
+    <p>1. Puedes darle al play abajo para escuchar canciones que me hacen pensar en ti.</p>
+    <p>2. Los otros botones abren otra pestaña; dale pausa antes de hacer clic. Primero la cartita, después lo que sigue.</p>
+    <p>PD: Todo fue hecho con mucho amor, espero que te guste 💞</p>
     <p>Dicho esto, ya peye ver, muaaa ❤️</p>
   </div>
 
@@ -145,8 +133,8 @@
   </div>
 
   <div class="audio-controls">
-    <button onclick="togglePlayPause()">⏯ Play/Pausa</button>
-    <button onclick="playRandom()">🔀 Aleatorio</button>
+    <button onclick="togglePlayPause()">▶️</button>
+    <button onclick="playRandom()">🔄</button>
     <span id="songTitle"></span>
     <audio id="player"></audio>
   </div>
@@ -164,31 +152,30 @@
       { archivo: "canciones/9.mp3", nombre: "Siempre juntos" },
       { archivo: "canciones/10.mp3", nombre: "Amor sin fin" }
     ];
-
     const player = document.getElementById('player');
     const songTitle = document.getElementById('songTitle');
+    let currentIndex = Math.floor(Math.random() * canciones.length);
     player.volume = 0.7;
 
-    function loadSong(index) {
-      player.src = canciones[index].archivo;
-      songTitle.textContent = canciones[index].nombre;
+    function loadSong(idx) {
+      currentIndex = idx;
+      player.src = canciones[idx].archivo;
+      songTitle.textContent = canciones[idx].nombre;
       player.play();
     }
-
     function playRandom() {
-      const idx = Math.floor(Math.random() * canciones.length);
+      let idx;
+      do { idx = Math.floor(Math.random()*canciones.length); } while (idx === currentIndex);
       loadSong(idx);
     }
-
     function togglePlayPause() {
-      if (!player.src) {
-        playRandom();
-      } else {
-        player.paused ? player.play() : player.pause();
-      }
+      if (!player.src) loadSong(currentIndex);
+      else player.paused ? player.play() : player.pause();
     }
-
-    window.onload = () => playRandom();
+    function toggleNote() {
+      document.getElementById('noteCard').style.display = 'none';
+    }
+    window.onload = () => loadSong(currentIndex);
   </script>
 </body>
 </html>
