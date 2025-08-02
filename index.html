@@ -313,8 +313,9 @@
 
     audioPlayer.addEventListener("ended", nextSong);
 
-    window.onload = () => {
-      loadSong(currentSong);
+  window.onload = () => {
+  currentSong = Math.floor(Math.random() * songs.length);
+  loadSong(currentSong);
 
       // Corazones flotantes 💜💙
       let duration = 13000; // 13 segundos
